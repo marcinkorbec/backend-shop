@@ -10,7 +10,7 @@ import { TypeOrmModule } from "@nestjs/typeorm"
     imports: [
         ShopModule,
         BasketModule,
-        UsersModule
+        UsersModule,
         TypeOrmModule.forRoot(),
     ],
     controllers: [AppController],
