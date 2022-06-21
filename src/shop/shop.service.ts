@@ -14,16 +14,18 @@ export class ShopService {
     ) {
     }
 
-    getProducts(): Promise<GetListOfProductsResponse> {
-        return await ShopItem.find();
+    async getProducts(): Promise<GetListOfProductsResponse> {
+        return await this.shopItemRespository.find();
     }
 
-    hasProduct(name: string): Promise<boolean> {
+    async hasProduct(name: string): Promise<boolean> {
         return (await this.getProducts()).some(item => item.name === name);
     }
 
-    getPriceOfProduct(name: string): Promise<number> {
+    async getPriceOfProduct(name: string): Promise<number> {
         return (await this.getProducts()).find(item=> item.name === name).priceNet;
     }
+
+    async getOne(): Promise<ShopItem>
 
 }

@@ -64,7 +64,7 @@ export class BasketService {
         };
     }
 
-    getTotalPriceOfBasket(): GetTotalPriceResponse {
+    async getTotalPriceOfBasket(): Promise<GetTotalPriceResponse> {
         if(!this.items.every(item => this.shopService.hasProduct(item.name))) {
 
             const alternativeBasket = this.items.filter(item => this.shopService.hasProduct(item.name));
@@ -75,12 +75,15 @@ export class BasketService {
             };
         }
 
-        return this.items
-          .map(item=> this.shopService.getPriceOfProduct(item.name) * item.quantity * 1.23)
+        return (await Promise.all(
+            this.items
+                .map(async item=> (await this.shopService.getPriceOfProduct(item.name)) * item.quantity * 1.23)
+        ))
+
           .reduce((previousValue, currentValue) => previousValue + currentValue, 0);
     }
 
-    countPromo(): number {
-        return this.getTotalPriceOfBasket() > 10 ? 1 : 0;
+    async countPromo(): Promise<number> {
+        return await (this.getTotalPriceOfBasket()) > 10 ? 1 : 0;
     }
 }

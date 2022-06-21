@@ -1,10 +1,11 @@
 import { Controller, Get, HostParam, Inject, Param, Redirect } from "@nestjs/common";
-import { GetListOfProductsResponse } from "../interfaces/shop-item";
+import {GetListOfProductsResponse} from "../interfaces/shop-item";
 import { ShopService } from "./shop.service";
+import {ShopItem} from "./shop-item.entity";
 
 @Controller({
     path: 'shop',
-    host: ':name.lvh.me',
+    host: 'localhost',
 })
 export class ShopController {
     onApplicationBootstrap() {
@@ -21,14 +22,15 @@ export class ShopController {
     }
 
     @Get("/")
-    getListOfProducts(): GetListOfProductsResponse {
+    getListOfProducts(): Promise<GetListOfProductsResponse> {
         return this.shopService.getProducts();
     }
 
-    @Get("/welcome")
-    welcome(
-      @HostParam("name") siteName: string
-    ):string {
-        return `Witaj na sklepie ${siteName}!`
-    };
+    @Get("/:id")
+    async getOneOfProducts(
+        @Param('id') id: string
+    ): Promise<ShopItem> {
+        return await this.shopService.getProducts();
+    }
+
 }
