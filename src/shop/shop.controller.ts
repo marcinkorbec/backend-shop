@@ -1,5 +1,5 @@
 import {Controller, Delete, Get, HostParam, Inject, Param, Post, Redirect} from "@nestjs/common";
-import {GetListOfProductsResponse} from "../interfaces/shop-item";
+import {CreateProductResponse, GetListOfProductsResponse} from "../interfaces/shop-item";
 import {ShopService} from "./shop.service";
 import {ShopItem} from "./shop-item.entity";
 
@@ -40,10 +40,15 @@ export class ShopController {
         return await this.shopService.deleteOneProducts(id);
     }
 
-    @Post('/:id')
+    @Post('/')
     async createNewProduct(
-        @Param('id') id: string
-    ) {
-        return await this.shopService.deleteOneProducts(id);
+    ):Promise<CreateProductResponse> {
+        return await this.shopService.crateProduct();
+    }
+
+    @Post('/')
+    async addBoughtCounter(
+    ):Promise<CreateProductResponse> {
+        return await this.shopService.crateProduct();
     }
 }
