@@ -1,6 +1,6 @@
-import { Controller, Get, HostParam, Inject, Param, Redirect } from "@nestjs/common";
+import {Controller, Delete, Get, HostParam, Inject, Param, Post, Redirect} from "@nestjs/common";
 import {GetListOfProductsResponse} from "../interfaces/shop-item";
-import { ShopService } from "./shop.service";
+import {ShopService} from "./shop.service";
 import {ShopItem} from "./shop-item.entity";
 
 @Controller({
@@ -17,7 +17,7 @@ export class ShopController {
     }
 
     constructor(
-      @Inject(ShopService) private shopService: ShopService
+        @Inject(ShopService) private shopService: ShopService
     ) {
     }
 
@@ -33,4 +33,17 @@ export class ShopController {
         return await this.shopService.getOneProduct(id);
     }
 
+    @Delete("/:id")
+    async deleteOneOfProducts(
+        @Param('id') id: string
+    ) {
+        return await this.shopService.deleteOneProducts(id);
+    }
+
+    @Post('/:id')
+    async createNewProduct(
+        @Param('id') id: string
+    ) {
+        return await this.shopService.deleteOneProducts(id);
+    }
 }
