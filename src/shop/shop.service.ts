@@ -46,6 +46,10 @@ export class ShopService {
     }
 
     async addBoughtCounter(id: string) {
+        this.shopItemRespository.update(id, {
+            wasEverBought: true,
+        })
+
         const item = await this.shopItemRespository.findOneOrFail({where: {id: id}});
 
         item.boughtCounter++;

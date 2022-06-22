@@ -34,4 +34,9 @@ export class ShopItem extends BaseEntity {
         default: 0,
     })
     boughtCounter: number;
+
+    @Column({
+        default: false,
+    })
+    wasEverBought: boolean
 }
