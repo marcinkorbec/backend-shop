@@ -30,7 +30,7 @@ export class ShopController {
     async getOneOfProducts(
         @Param('id') id: string
     ): Promise<ShopItem> {
-        return await this.shopService.getProducts();
+        return await this.shopService.getOneProduct(id);
     }
 
 }
