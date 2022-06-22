@@ -28,6 +28,12 @@ export class ShopService {
 
 
     async getOneProduct(id: string): Promise<ShopItem> {
-        return this.shopItemRespository.findOneOrFail({where: {id: id}});
+        return await this.shopItemRespository.findOneOrFail({where: {id: id}});
     }
+
+    async deleteOneProducts(id: string) {
+        return await this.shopItemRespository.delete(id);
+    }
+
+
 }
