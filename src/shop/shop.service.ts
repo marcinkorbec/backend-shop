@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable } from "@nestjs/common";
-import {GetListOfProductsResponse} from "../interfaces/shop-item";
+import {GetListOfProductsResponse, GetOneProductResponse} from "../interfaces/shop-item";
 import { BasketService } from "../basket/basket.service";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
@@ -26,6 +26,8 @@ export class ShopService {
         return (await this.getProducts()).find(item=> item.name === name).priceNet;
     }
 
-    async getOne(): Promise<ShopItem>
 
+    async getOneProduct(id: string): Promise<ShopItem> {
+        return this.shopItemRespository.findOneOrFail({where: {id: id}});
+    }
 }
