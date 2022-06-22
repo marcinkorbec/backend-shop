@@ -1,5 +1,5 @@
 import { forwardRef, Inject, Injectable } from "@nestjs/common";
-import {GetListOfProductsResponse, GetOneProductResponse} from "../interfaces/shop-item";
+import {CreateProductResponse, GetListOfProductsResponse, GetOneProductResponse} from "../interfaces/shop-item";
 import { BasketService } from "../basket/basket.service";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
@@ -36,4 +36,19 @@ export class ShopService {
     }
 
 
+    async crateProduct(): Promise<CreateProductResponse> {
+        const product = new ShopItem()
+        product.name = 'Czekolada';
+        product.priceNet = 12.99
+        product.description = 'Orzechowa'
+
+        return await this.shopItemRespository.save(product);
+    }
+
+    async addBoughtCounter(id: string) {
+        const item = await this.shopItemRespository.findOneOrFail({where: {id: id}});
+
+        item.boughtCounter++;
+        return await this.shopItemRespository.save(item);
+    }
 }
