@@ -4,4 +4,5 @@ export interface ShopItem {
     priceNet: number;
 }
 
-export type GetListOfProductsResponse = ShopItem[]
+export type GetListOfProductsResponse = ShopItem[];
+export type GetOneProductResponse = ShopItem;
