@@ -22,8 +22,8 @@ export class ShopController {
     }
 
     @Get("/")
-    getListOfProducts(): Promise<GetListOfProductsResponse> {
-        return this.shopService.getProducts();
+    async getListOfProducts(): Promise<GetListOfProductsResponse> {
+        return await this.shopService.getProducts();
     }
 
     @Get("/:id")

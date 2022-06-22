@@ -10,12 +10,11 @@ export class ShopService {
 
     constructor(
       @Inject(forwardRef(()=> BasketService)) private basketService: BasketService,
-      @InjectRepository(ShopItem) private shopItemRespository: Repository<ShopItem>
     ) {
     }
 
     async getProducts(): Promise<GetListOfProductsResponse> {
-        return await this.shopItemRespository.find();
+        return await ShopItem.find();
     }
 
     async hasProduct(name: string): Promise<boolean> {
@@ -28,11 +27,11 @@ export class ShopService {
 
 
     async getOneProduct(id: string): Promise<ShopItem> {
-        return await this.shopItemRespository.findOneOrFail({where: {id: id}});
+        return await ShopItem.findOneOrFail({where: {id: id}});
     }
 
     async deleteOneProducts(id: string) {
-        return await this.shopItemRespository.delete(id);
+        return await ShopItem.delete(id);
     }
 
 
@@ -42,17 +41,18 @@ export class ShopService {
         product.priceNet = 12.99
         product.description = 'Orzechowa'
 
-        return await this.shopItemRespository.save(product);
+        return await product.save();
     }
 
     async addBoughtCounter(id: string) {
-        this.shopItemRespository.update(id, {
+        await ShopItem.update(id, {
             wasEverBought: true,
         })
 
-        const item = await this.shopItemRespository.findOneOrFail({where: {id: id}});
+        const item = await ShopItem.findOneOrFail({where: {id: id}});
 
         item.boughtCounter++;
-        return await this.shopItemRespository.save(item);
+
+        await item.save;
     }
 }

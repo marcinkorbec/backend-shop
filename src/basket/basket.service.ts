@@ -56,8 +56,7 @@ export class BasketService {
             return {
                 isSucces: false
             };
-        }
-        ;
+        };
 
         items.splice(index, 1);
 
