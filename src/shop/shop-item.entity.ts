@@ -30,7 +30,7 @@ export class ShopItem extends BaseEntity {
     createdAt: Date;
 
     @Column({
-        type: "number",
+        type: "int",
         default: 0,
     })
     boughtCounter: number;
