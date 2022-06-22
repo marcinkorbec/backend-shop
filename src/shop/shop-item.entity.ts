@@ -28,4 +28,10 @@ export class ShopItem extends BaseEntity {
         default: ()=> 'CURRENT_TIME'
     })
     createdAt: Date;
+
+    @Column({
+        type: "number",
+        default: 0,
+    })
+    boughtCounter: number;
 }
