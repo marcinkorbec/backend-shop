@@ -20,7 +20,7 @@ export class ShopController {
         @Inject(ShopService) private shopService: ShopService
     ) {
     }
-    
+
     @Get("/")
     async getListOfProducts(): Promise<GetListOfProductsResponse> {
         return await this.shopService.getProducts();
