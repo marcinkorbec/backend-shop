@@ -8,6 +8,7 @@ import {ShopItem} from "./shop-item.entity";
 @Injectable()
 export class ShopService {
 
+
     constructor(
       @Inject(forwardRef(()=> BasketService)) private basketService: BasketService,
     ) {
@@ -54,5 +55,9 @@ export class ShopService {
         item.boughtCounter++;
 
         await item.save;
+    }
+
+    findProduct(): GetListOfProductsResponse | PromiseLike<GetListOfProductsResponse> {
+        throw new Error("Method not implemented.");
     }
 }
