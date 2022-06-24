@@ -8,5 +8,9 @@
   "entities": ["dist/**/**.entity{.ts,.js}"],
   "bigNumberStrings": false,
   "logging": true,
-  "synchronize": true
+  "migrationsTableName": "migrations",
+  "migrations": ["dist/migration/*.ts"],
+  "cli": {
+    "migrationsDir": "migrations"
+  }
 }
