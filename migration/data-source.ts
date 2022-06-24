@@ -11,7 +11,7 @@ export const connectionSource = new DataSource({
     bigNumberStrings: false,
     logging: true,
     migrationsTableName: 'migrations',
-    migrations: ["dist/migration/*.ts, .js"],
+    migrations: ["dist/migration/*.ts,.js"],
     cli: {
         migrationsDir: 'migration'
     },
