@@ -1,10 +1,10 @@
-import {Module} from "@nestjs/common";
-import {AppController} from "./app.controller";
-import {AppService} from "./app.service";
-import {ShopModule} from "./shop/shop.module";
-import {BasketModule} from "./basket/basket.module";
-import {UsersModule} from "./users/users.module";
-import {TypeOrmModule} from "@nestjs/typeorm"
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ShopModule } from "./shop/shop.module";
+import { BasketModule } from "./basket/basket.module";
+import { UsersModule } from "./users/users.module";
+import { TypeOrmModule } from "@nestjs/typeorm"
 
 @Module({
     imports: [
@@ -21,7 +21,9 @@ import {TypeOrmModule} from "@nestjs/typeorm"
             entities: ["dist/**/**.entity{.ts,.js}"],
             bigNumberStrings: false,
             logging: true,
-            synchronize: true
+            migrationsTableName: 'migrations',
+            migrations: ["dist/migration/*.ts, .js"],
+            autoLoadEntities: true,
         }),
     ],
     controllers: [AppController],
