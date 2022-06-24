@@ -7,13 +7,13 @@ export class ShopItem extends BaseEntity {
     id: string;
 
     @Column({
-        length: 60,
+        length: 65,
     })
     name: string;
 
     @Column({
         type: "text",
-        default: '',
+        default: '(brak)',
     })
     description: string | null;
 
