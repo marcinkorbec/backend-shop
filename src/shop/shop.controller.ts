@@ -26,6 +26,11 @@ export class ShopController {
         return await this.shopService.getProducts();
     }
 
+    @Get('/find')
+    testFindItem(): Promise<GetListOfProductsResponse> {
+        return findProduct()
+    }
+
     @Get("/:id")
     async getOneOfProducts(
         @Param('id') id: string
@@ -51,4 +56,5 @@ export class ShopController {
     ):Promise<CreateProductResponse> {
         return await this.shopService.crateProduct();
     }
+
 }

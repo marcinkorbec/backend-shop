@@ -19,9 +19,12 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm:migration:generate": "ts-node ./node_modules/typeorm/cli migration:generate ./migration/update -d ./migration/data-source.ts",
-    "typeorm:migration:run": "ts-node ./node_modules/typeorm/cli migration:run -d ./migration/data-source.ts",
-    "typeorm:migration:revert": "ts-node ./node_modules/typeorm/cli migration:revert -d ./migration/data-source.ts"
+    "typeorm:migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate ./migration/update -d ./migration/data-source.ts",
+    "typeorm:migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d ./migration/data-source.ts",
+    "typeorm:migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert -d ./migration/data-source.ts",
+    "typeorm:migration:generate1": "ts-node ./node_modules/typeorm/cli.js migration:generate src/migrations/NewVersionOfShopItemEntity -d src/migrations/data-source.ts",
+    "typeorm:migration:run1": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/migrations/data-source.ts",
+    "typeorm:migration:revert1": "ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
